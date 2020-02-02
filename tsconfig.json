@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "lib": ["es5"],
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "dist"
+  }
+}
