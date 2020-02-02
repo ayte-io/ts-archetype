@@ -1,6 +1,6 @@
 {
   "name": "@ayte/archetype",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Small library with basic type definitions",
   "main": "dist/index.d.ts",
   "repository": "git@github.com:ayte-io/ts-archetype.git",
