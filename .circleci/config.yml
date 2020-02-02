@@ -34,6 +34,8 @@ workflows:
     jobs:
       - build
       - publish:
+          requires:
+            - build
           context: npmjs.org
           filters:
             tags:
