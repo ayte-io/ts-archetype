@@ -1,12 +1,12 @@
 {
   "name": "@ayte/archetype",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Small library with basic type definitions",
   "main": "dist/index.d.ts",
   "repository": "git@github.com:ayte-io/ts-archetype.git",
   "author": "Ayte Labs <dev@ayte.team>",
   "license": "MIT",
-  "types": "dist/index.d.ts",
+  "types": "dist",
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
     "compile": "tsc"

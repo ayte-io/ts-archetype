@@ -1,8 +1,9 @@
 {
   "compilerOptions": {
     "lib": ["es5"],
+    "outDir": "dist",
     "declaration": true,
-    "emitDeclarationOnly": true,
-    "outFile": "dist/index.d.ts"
-  }
+    "emitDeclarationOnly": true
+  },
+  "include": ["src"]
 }
