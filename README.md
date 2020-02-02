@@ -132,7 +132,7 @@ type IPredicate<T> = (subject: T) => boolean;
 `IConsumer<T>` simply accepts a value:
 
 ```typescript
-type IConsumer<T> = (subject: T) => boolean;
+type IConsumer<T> = (subject: T) => void;
 ```
 
 `IRunnable` represents a simple callback:
