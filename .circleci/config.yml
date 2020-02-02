@@ -33,12 +33,7 @@ workflows:
   default:
     jobs:
       - build
-      - report:
-          requires:
-            - build
       - publish:
-          requires:
-            - report
           context: npmjs.org
           filters:
             tags:
