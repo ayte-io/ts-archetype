@@ -1,4 +1,4 @@
-import {IDynamic} from '../Collection';
+import {IDynamic} from '@ayte/archetype.collection';
 
 /**
  * @since 0.1.0
@@ -13,7 +13,7 @@ export interface IViolation<R, T, S = string | number> {
      */
     readonly root: R;
     /**
-     * Value inspection of which produced violation.
+     * Value that produced violation during inspection.
      */
     readonly subject: T;
     /**

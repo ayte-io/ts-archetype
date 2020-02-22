@@ -1,0 +1,38 @@
+{
+  "name": "@ayte/archetype.function",
+  "version": "0.2.0",
+  "description": "Function-related basic types, part of @ayte/archetype",
+  "repository": "https://github.com/ayte-io/ts-archetype",
+  "author": {
+    "name": "Ayte Labs",
+    "email": "dev@ayte.team",
+    "url": "https://ayte.io"
+  },
+  "contributors": [
+    {
+      "name": "Etki",
+      "email": "etki@ayte.team"
+    }
+  ],
+  "license": "(MIT OR UPL-1.0)",
+  "types": "dist",
+  "scripts": {
+    "lint": "eslint 'src/**/*.ts'",
+    "compile": "tsc"
+  },
+  "files": [
+    "LICENSE-MIT",
+    "LICENSE-UPL-1.0",
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^2.18.0",
+    "@typescript-eslint/parser": "^2.18.0",
+    "eslint": "^6.8.0",
+    "typescript": "^3.7.5"
+  }
+}

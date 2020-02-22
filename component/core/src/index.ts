@@ -1,8 +1,3 @@
-import * as Collection from './Collection';
-import * as Function from './Function';
-import * as Validation from './Validation';
-import * as Value from './Value';
-
 export {Absent} from './Absent';
 export {Scalar} from './Scalar';
 export {Primitive} from './Primitive';
@@ -29,9 +24,3 @@ export {Immutable} from './Immutable';
 
 export {Loose} from './Loose';
 export {Solid} from './Solid';
-
-
-export {Collection};
-export {Function};
-export {Validation};
-export {Value};

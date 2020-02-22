@@ -1,5 +1,5 @@
-import {IFunction} from '../Function';
-import {Complete} from '../Complete';
+import {IFunction} from '@ayte/archetype.function';
+import {Complete} from '@ayte/archetype.core';
 
 /**
  * Specific function designed to fill any missing properties of input

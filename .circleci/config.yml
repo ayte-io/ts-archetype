@@ -1,44 +1,152 @@
-version: 2
-jobs:
-  build:
-    docker:
-      - image: circleci/node:10
-    working_directory: /tmp/workspace
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            - v1-dependencies-
-      - run: yarn install
-      - save_cache:
-          key: v1-dependencies-{{ checksum "package.json" }}
-          paths:
-            - node_modules
-      - run: yarn compile
-      - run: yarn lint
-      - persist_to_workspace:
-          root: /tmp/workspace
-          paths:
-            - dist
-  publish:
-    docker:
-      - image: circleci/node:10
-    working_directory: /tmp/workspace
-    steps:
-      - attach_workspace
-      - run: yarn publish
-workflows:
-  version: 2
-  default:
+version: '2.1'
+orbs:
+  mono:
+    executors:
+      default:
+        docker:
+          - image: circleci/node:10
+    commands:
+      assert_unpublished:
+        steps:
+          - run:
+              name: Verifying that current version isn't published to central registry
+              command: |
+                set -euo pipefail
+                cd "$(cat /tmp/.working_directory)"
+                PACKAGE="$(jq -r .name package.json)"
+                REGISTRY_RESPONSE="$(yarn info --json "$PACKAGE" dist-tags 2>&1 | head -n 1)"
+                if [[ "$(echo "$REGISTRY_RESPONSE" | jq -r .type)" == "error" ]]; then
+                  PUBLISHED_VERSION="<missing>"
+                else
+                  PUBLISHED_VERSION="$(echo "$REGISTRY_RESPONSE" | jq -r .data.latest)"
+                fi
+                CURRENT_VERSION="$(jq -r .version package.json)"
+                echo "$PACKAGE: latest published version: $PUBLISHED_VERSION"
+                echo "$PACKAGE: current package version: $CURRENT_VERSION"
+                if [[ "$CURRENT_VERSION" == "$PUBLISHED_VERSION" ]]; then
+                  echo "Currently built version has already been published"
+                  exit 1
+                fi
+      set_working_directory:
+        parameters:
+          path:
+            type: string
+        steps:
+          - run:
+              command: echo '<<parameters.path>>' > /tmp/.working_directory
+      set_relative_working_directory:
+        parameters:
+          path:
+            type: string
+        steps:
+          - set_working_directory:
+              path: /tmp/workspace/<<parameters.path>>
+      setup_publishing:
+        steps:
+          - run:
+              name: Resolving working directory using git tag
+              command: |
+                echo "Resolving working directory for publishing using git tag '$CIRCLE_TAG'"
+
+                echo "Splitting tag by '/' character"
+
+                PACKAGE_NAME="$(echo "$CIRCLE_TAG" | cut -s -d / -f 1)"
+                COMPONENT_VERSION="$(echo "$CIRCLE_TAG" | cut -s -d / -f 2)"
+
+                echo "Left chunk: $PACKAGE_NAME, right chunk: $COMPONENT_VERSION"
+
+                PACKAGE_VERSION="$(echo "$CIRCLE_TAG" | grep -Po '\d+\.\d+\.\d+')"
+
+                set -euo pipefail
+
+                if [[ -z "$PACKAGE_VERSION" ]]; then
+                  echo "Extracted empty package version, what the hell?"
+                  exit 1
+                fi
+
+                if [[ -z "COMPONENT_VERSION" ]]; then
+                  echo "No component name present in tag, working with aggregate package"
+                  WORKING_DIRECTORY="/tmp/workspace/aggregate"
+                else
+                  echo "Working with '$PACKAGE_NAME' component specified in tag"
+                  WORKING_DIRECTORY="/tmp/workspace/component/$PACKAGE_NAME"
+                fi
+
+                if [[ ! -d "$WORKING_DIRECTORY" ]]; then
+                  echo "Working directory '$WORKING_DIRECTORY' doesn't exist, halting"
+                  exit 1
+                fi
+
+                echo "Switching to '$WORKING_DIRECTORY'"
+                cd "$WORKING_DIRECTORY"
+                echo "$WORKING_DIRECTORY" >> /tmp/.working_directory
+
+                CURRENT_VERSION="$(jq -r .version package.json)"
+
+                echo "Current package version: '$CURRENT_VERSION'"
+
+                if [[ "$CURRENT_VERSION" != "$PACKAGE_VERSION" ]]; then
+                  echo "Version mismatch: version parsed from tag is '$PACKAGE_VERSION', while version from package.json is '$CURRENT_VERSION'"
+                fi
+      build:
+        steps:
+          - run:
+              name: Dependency installation
+              command: yarn --cwd "$(cat /tmp/.working_directory)" install
+          - run:
+              name: Linting
+              command: yarn --cwd "$(cat /tmp/.working_directory)" lint
+          - run:
+              name: Compilation
+              command: yarn --cwd "$(cat /tmp/.working_directory)" compile
+          - assert_unpublished
+      publish:
+        steps:
+          - run:
+              name: Publishing
+              command: yarn --cwd "$(cat /tmp/.working_directory)" publish
     jobs:
-      - build
-      - publish:
-          requires:
-            - build
-          context: npmjs.org
+      build:
+        executor: default
+        working_directory: /tmp/workspace
+        parameters:
+          path:
+            type: string
+        steps:
+          - checkout
+          - set_relative_working_directory:
+              path: <<parameters.path>>
+          - build
+      publish:
+        executor: default
+        working_directory: /tmp/workspace
+        steps:
+          - checkout
+          - setup_publishing
+          - build
+          - publish
+
+workflows:
+  build:
+    jobs:
+      - mono/build:
+          name: build/core
+          path: component/core
+      - mono/build:
+          name: build/collection
+          path: component/collection
+      - mono/build:
+          name: build/function
+          path: component/function
+      - mono/build:
+          name: build/aggregate
+          path: aggregate
+  publish:
+    jobs:
+      - mono/publish:
+          context: ayte-bot@npmjs.com
           filters:
-            tags:
-              only: /^\d+\.\d+\.\d+$/
             branches:
               ignore: /.*/
+            tags:
+              only: /^(?:\w+\/)?\d+\.\d+\.\d+$/

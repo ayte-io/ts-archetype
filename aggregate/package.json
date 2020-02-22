@@ -1,12 +1,20 @@
 {
   "name": "@ayte/archetype",
-  "version": "0.1.2",
-  "description": "Small library with basic type definitions",
-  "main": "dist/index.d.ts",
-  "repository": "git@github.com:ayte-io/ts-archetype.git",
-  "author": "Ayte Labs <dev@ayte.team>",
-  "license": "MIT",
-  "types": "dist",
+  "version": "0.2.0",
+  "description": "Ayte commonly used type definitions",
+  "repository": "https://github.com/ayte-io/ts-archetype",
+  "author": {
+    "name": "Ayte Labs",
+    "email": "dev@ayte.team",
+    "url": "https://ayte.io"
+  },
+  "contributors": [
+    {
+      "name": "Etki",
+      "email": "etki@ayte.team"
+    }
+  ],
+  "license": "(MIT OR UPL-1.0)",
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
     "compile": "tsc"

@@ -1,7 +1,7 @@
 /* eslint @typescript-eslint/no-explicit-any: off */
 
 import {IViolation} from './IViolation';
-import {IFunction} from '../Function';
+import {IFunction} from '@ayte/archetype.function';
 
 /**
  * @since 0.1.0
