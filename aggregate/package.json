@@ -1,6 +1,6 @@
 {
   "name": "@ayte/archetype",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Ayte commonly used type definitions",
   "repository": "https://github.com/ayte-io/ts-archetype",
   "author": {
@@ -31,7 +31,8 @@
   "dependencies": {
     "@ayte/archetype.core": "^0.2.0",
     "@ayte/archetype.collection": "^0.2.0",
-    "@ayte/archetype.function": "^0.2.0"
+    "@ayte/archetype.function": "^0.2.0",
+    "@ayte/archetype.value": "^0.2.0"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^2.18.0",

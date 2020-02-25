@@ -28,6 +28,9 @@ npm install -S @ayte/archetype
 
 ## Structure
 
+Project is separated into several component packages, consolidated by
+`@ayte/archetype`, which exposes all of them as a single flat namespace.
+
 - [@ayte/archetype.core](https://www.npmjs.com/package/@ayte/archetype.core) 
 ([src/core](src/core)) contains most basic types and constraints. It 
 obviously doesn't have any dependencies.
