@@ -64,7 +64,7 @@ orbs:
                   exit 1
                 fi
 
-                if [[ -z "COMPONENT_VERSION" ]]; then
+                if [[ -z "$COMPONENT_VERSION" ]]; then
                   echo "No component name present in tag, working with aggregate package"
                   WORKING_DIRECTORY="/tmp/workspace/aggregate"
                 else
