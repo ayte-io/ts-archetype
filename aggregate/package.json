@@ -1,6 +1,6 @@
 {
   "name": "@ayte/archetype",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "Ayte commonly used type definitions",
   "repository": "https://github.com/ayte-io/ts-archetype",
   "author": {
@@ -15,6 +15,7 @@
     }
   ],
   "license": "(MIT OR UPL-1.0)",
+  "types": "dist",
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
     "compile": "tsc"
