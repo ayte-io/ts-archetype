@@ -67,6 +67,7 @@ orbs:
                 if [[ -z "$COMPONENT_VERSION" ]]; then
                   echo "No component name present in tag, working with aggregate package"
                   WORKING_DIRECTORY="/tmp/workspace/aggregate"
+                  cp "/tmp/workspace/README.md" "/tmp/workspace/aggregate/"
                 else
                   echo "Working with '$PACKAGE_NAME' component specified in tag"
                   WORKING_DIRECTORY="/tmp/workspace/component/$PACKAGE_NAME"
