@@ -1,7 +1,7 @@
 # Ayte / TypeScript / Archetype / Core
 
 [![npm](https://img.shields.io/npm/v/@ayte/archetype.core.svg?style=flat-square)](https://www.npmjs.com/package/@ayte/archetype.core)
-[![CircleCI/Master](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.1)
+[![CircleCI/Master](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.2)
 
 This package contains some low-level types that are also used in other
 archetype packages.

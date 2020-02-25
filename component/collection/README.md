@@ -1,7 +1,7 @@
 # Ayte / TypeScript / Archetype / Collection
 
 [![npm](https://img.shields.io/npm/v/@ayte/archetype.collection.svg?style=flat-square)](https://www.npmjs.com/package/@ayte/archetype.collection)
-[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.1)
+[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.2)
 
 This small package is designed for holding all collection-related types.
 

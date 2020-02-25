@@ -1,7 +1,7 @@
 # Ayte / TypeScript / Archetype / Validation
 
 [![npm](https://img.shields.io/npm/v/@ayte/archetype.validation.svg?style=flat-square)](https://www.npmjs.com/package/@ayte/archetype.validation)
-[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.1)
+[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.2)
 
 This package contains types related to validation process. This package 
 is in incubatory stage and thus may significantly change it's API in

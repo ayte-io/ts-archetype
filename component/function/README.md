@@ -1,7 +1,7 @@
 # Ayte / TypeScript / Archetype / Function
 
 [![npm](https://img.shields.io/npm/v/@ayte/archetype.function.svg?style=flat-square)](https://www.npmjs.com/package/@ayte/archetype.function)
-[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.1)
+[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.2)
 
 This package contains function-related types, mostly modeled after Java
 types of same purpose. While many people would be more comfortable with

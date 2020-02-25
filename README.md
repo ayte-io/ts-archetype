@@ -1,7 +1,7 @@
 # Ayte / TypeScript / Archetype
 
 [![npm](https://img.shields.io/npm/v/@ayte/archetype.svg?style=flat-square)](https://www.npmjs.com/package/@ayte/archetype)
-[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.1)
+[![CircleCI](https://img.shields.io/circleci/project/github/ayte-io/ts-archetype.svg?style=flat-square)](https://app.circleci.com/github/ayte-io/ts-archetype/pipelines?branch=release%2F0.2)
 
 This repository contains TypeScript project with basic type 
 declarations, such as `Scalar`, `IComparator<T>`, `IPredicate<T>` and
