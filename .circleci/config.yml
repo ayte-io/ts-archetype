@@ -101,7 +101,6 @@ orbs:
           - run:
               name: Compilation
               command: yarn --cwd "$(cat /tmp/.working_directory)" compile
-          - assert_unpublished
       publish:
         steps:
           - run:
@@ -125,6 +124,7 @@ orbs:
         steps:
           - checkout
           - setup_publishing
+          - assert_unpublished
           - build
           - publish
 
@@ -140,6 +140,12 @@ workflows:
       - mono/build:
           name: build/function
           path: component/function
+      - mono/build:
+          name: build/value
+          path: component/value
+      - mono/build:
+          name: build/validation
+          path: component/validation
       - mono/build:
           name: build/aggregate
           path: aggregate
